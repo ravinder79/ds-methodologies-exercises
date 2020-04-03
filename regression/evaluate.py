@@ -10,7 +10,11 @@ from statsmodels.formula.api import ols
 
 def plot_residuals(y, yhat, df):
     residual = yhat - y 
-    sns.scatterplot(x= y, y = residual)
+    plt.hlines(0, y.min(), y.max(), ls=':')
+    plt.scatter(y, residual)
+    plt.ylabel('residual ($y - \hat{y}$)')
+    plt.xlabel('actual value ($y$)')
+    plt.title('Actual vs Residual')
     
 
 def regression_errors(y, yhat, df):
@@ -19,8 +23,6 @@ def regression_errors(y, yhat, df):
     TSS = SSE+ESS
     MSE = mean_squared_error(df.y, df.yhat)
     RMSE = sqrt(mean_squared_error(df.y, df.yhat))
-    #print(f'SSE = {SSE}, ESS = {ESS}, TSS = {TSS}, MSE = {MSE}, RMSE = {RMSE}')
-    #return SSE, ESS, TSS, MSE, RMSE
     return {'SSE' : SSE, 'ESS' : ESS, 'TSS' :TSS, 'MSE' : MSE, 'RMSE' : RMSE}
 
 def baseline_mean_errors(y, df):
@@ -28,8 +30,6 @@ def baseline_mean_errors(y, df):
     SSE_bl = mean_squared_error(df.y, df.yhat_bl)*len(df)
     MSE_bl = mean_squared_error(df.y, df.yhat_bl)
     RMSE_bl = sqrt(mean_squared_error(df.y, df.yhat_bl))
-    #print(f'SSE_bl = {SSE_bl}, MSE_bl = {MSE_bl}, RMSE_bl = {RMSE_bl}')
-    #return SSE, MSE, RMSE
     return {'SSE_bl' : SSE_bl, 'MSE_bl' : MSE_bl, 'RMSE_bl' : RMSE_bl}
 
 def better_than_baseline(y, yhat, df):
