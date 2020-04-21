@@ -9,3 +9,4 @@ checkbook copy.txt
 solutions.py
 env.py
 *.csv
+*.pdf
