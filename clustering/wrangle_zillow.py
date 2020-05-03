@@ -52,5 +52,6 @@ def wrangle_zillow(df):
     df = single_units(df)
     df = handle_missing_values(df, prop_required_column = .5, prop_required_row = .70)
     df = zillow_impute(df)
+    df['fips']=df[['fips']].replace({6037.0:'Los_Angeles_county',6059.0:'Orange_county', 6111: 'Ventura_county'})
     return df
 
