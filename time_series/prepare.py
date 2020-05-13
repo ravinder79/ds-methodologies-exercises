@@ -44,7 +44,6 @@ def prepare_store_data():
     df = set_index_store(df)
     df = add_month_week(df)
     df = sales_total(df)
-    df = sales_diff(df)
     plot_hist_store(df)
     return df
 
